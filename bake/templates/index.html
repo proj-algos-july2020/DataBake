@@ -6,6 +6,29 @@
     <title>DataBake</title>
 </head>
 <body>
-    <h1>DataBake Project!!!</h1>
+    <h1>DataBake</h1>
+    <h3>By Bakers, For Bakers</h3>
+
+<div>
+    
+    <form action="/login" method="POST">
+        {% csrf_token %}
+
+        <h3>User Name: <input type="text" name="user_name"></h3>
+        <h3>Password: <input type="text" name="password_input"></h3>
+        <h3>Confirm Password: <input type="text" name="confirmpw_input"></h3>
+
+        <input type="submit" value="Login">
+    </form>
+    <ul class="messages">    
+        {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    <h3>If your new to DataBake please <a href="registration">register</a> here. </h3>
+ 
+</div>
+
+
 </body>
 </html>
