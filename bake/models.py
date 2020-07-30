@@ -19,7 +19,7 @@ class UserManager(models.Manager):
             errors['email'] = "Email cannot be blank"
         elif not EMAIL_REGEX.match(postData['email']):               
             errors['email'] = "Invalid email address"
-        elif User.objects.filter(email=postData['email_input']).exists():
+        elif User.objects.filter(email=postData['email']).exists():
             errors['emailunique'] = "Email already registered, please login."
 
         if len(postData['password'])<8:
@@ -32,6 +32,13 @@ class UserManager(models.Manager):
             errors['user_name'] = "Your user name must have 4 or more characters"
         elif User.objects.filter(user_name=postData['user_name']).exists():
             errors['username_unique'] = "Email already registered, please login."
+# adding validation for location
+        if len(postData['city'])<2:
+            errors['city'] = "please enter a city "
+        if len(postData['state'])<2:
+            errors['last_name'] = "please scroll down and choose a state"
+        if len(postData['zipcode'])<5:
+            errors['zipcode'] = "please enter a zipcode"
 
         if len(postData['bio'])<10:
             errors['bio'] = "Bio cannot be blank"   
