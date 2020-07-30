@@ -29,36 +29,36 @@
         </div>
 
         <div class="col-9 mx-auto border border-white rounded-lg" style="background-color: whitesmoke;">
-            <!-- <div class="col-4"> -->
-                <form action="/login" method="POST">
-                    {% csrf_token %}
 
-                    <table class ="table">
-                        <tbody>
-                            <tr> 
-                                <th style="text-align:right"> <h5>Name: </th> 
-                                <th style="text-align:left"> <input type="text" name="user_name"></h5></th>
-                            </tr>
-                            <tr> 
-                                <th style="text-align:right"> <h5>Password: </th>
-                                <th style="text-align:left"> <input type="text" name="password_input"></h5></th>
-                            </tr>
-                            <tr> 
-                                <th style="text-align:right"> <h5>Confirm Password: </th>
-                                <th style="text-align:left"> <input type="text" name="confirmpw_input"></h5></th>
-                            </tr>
-                        </tbody>
-                    </table>
+            <form action="/login" method="POST">
+                {% csrf_token %}
 
-                    <input type="submit" value="Login" class="btn btn-warning mx-auto">
-                </form>
-                <ul class="messages">    
-                    {% for message in messages %}    
-                    <li class="text-danger font-italic" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-                    {% endfor %}
-                </ul>
-                <p>If you're new to DataBake please <a href="registration">register</a> here. </p>
-            <!-- </div> -->
+                <table class ="table">
+                    <tbody>
+                        <tr> 
+                            <th style="text-align:right"> <h5>Name: </th> 
+                            <th style="text-align:left"> <input type="text" name="user_name"></h5></th>
+                        </tr>
+                        <tr> 
+                            <th style="text-align:right"> <h5>Password: </th>
+                            <th style="text-align:left"> <input type="text" name="password_input"></h5></th>
+                        </tr>
+                        <tr> 
+                            <th style="text-align:right"> <h5>Confirm Password: </th>
+                            <th style="text-align:left"> <input type="text" name="confirmpw_input"></h5></th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <input type="submit" value="Login" class="btn btn-warning mx-auto">
+            </form>
+            <ul class="messages">    
+                {% for message in messages %}    
+                <li class="text-danger font-italic" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+            <p>If you're new to DataBake please <a href="registration">register</a> here. </p>
+
         </div>
         <br>
         <br>
