@@ -28,7 +28,7 @@
             <p class="font-italic border-black" id="white">By Bakers, For Bakers</p>
         </div>
 
-        <div class="col-9 mx-auto border border-white rounded-lg" style="background-color: whitesmoke;">
+        <div class="col-9 mx-auto border border-white rounded-lg" style="background-color: whitesmoke; overflow-x: auto;">
 
             <ul class="messages">    
                 {% for message in messages %}    
@@ -41,11 +41,10 @@
 
                 <table class ="table mx-auto">
 
-                    <!-- Cannot figure out how to make the table respond to screen size changes argh -->
 
                     <tbody>
                         <tr> 
-                            <th style="text-align:right"> <p>First Name: </th> 
+                            <th style="text-align:right "> <p>First Name: </th> 
                             <th style="text-align:left"> <input type="text" name="first_name"></p></th>
                             <th style="text-align:right"> <p>Last Name: </th>
                             <th style="text-align:left"> <input type="text" name="last_name"></p></th>
@@ -80,13 +79,13 @@
 
                 <table class="table mx-auto">
                     <tbody>
-                        <tr> 
+                        <tr col="1"> 
                             <th style="text-align:right"> <p>Current Position: </th>
-                            <th style="text-align:left"> <input type="text" name="title" style="width:500px"></p></th>
+                            <th> <input type="text" name="title" style="width:500px"></p></th>
                         </tr>
-                        <tr>
+                        <tr col="3">
                             <th style="text-align:right"> <p>Tell us about you:</p> </th>
-                            <th style="text-align:center"> <textarea type="text" name="bio" id="textbox" cols="60" rows="10"></textarea></th>
+                            <th> <textarea type="text" name="bio" id="textbox" style="width:100%"></textarea></th>
                         </tr>
                     </tbody>
   
