@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/recipe.css' %}">
     <style>
         #edit_title{
             width: 60%;
@@ -51,9 +52,27 @@
             </div>
         </div>
     </div>
-    <div id='recipe_photo'>
-        <h3>Create Recipe:</h3>
-        <img src="../static/img/Placeholder.png" alt="image placeholder">
+    <div id="wrapper">
+        <div id='recipe_photo'>
+            <h3>Create Recipe:</h3>
+            <img src="../static/img/Placeholder.png" alt="image placeholder">
+            <a href="">Upload Photo</a>
+        </div>
+        <div id="recipe">
+            <form action="" method="post">
+                <input type="text" placeholder="Title">
+                <select name="category">
+                    <option value="Doughs">Doughs</option>
+                    <option value="Creams">Creams</option>
+                    <option value="Mousses">Mousses</option>
+                    <option value="Glazes">Glazes</option>
+                    <option value="Sponges">Sponges</option>
+                    <option value="Syrups">Syrups</option>
+                    <option value="Confectionary">Confectionary</option>
+                    <option value="Other">Other</option>
+                </select>
+            </form>
+        </div>
     </div>
 </body>
 </html>
