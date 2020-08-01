@@ -78,6 +78,24 @@ class User(models.Model):
 
     objects = UserManager()
 
+class CategoryManager(models.Manager):
+
+    def category_validator(self, postData):
+
+        errors = {}
+
+        if len(postData['category_name'])<1:
+            errors['category_name'] = "Category name cannot be blank" 
+
+        return errors
+
+class Category(models.Model):
+    category_name = models.CharField(max_length=255)
+
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    objects = CategoryManager()
 
 class RecipeManager(models.Manager):
 
@@ -99,6 +117,7 @@ class RecipeManager(models.Manager):
 
         return errors
 
+
 class Recipe(models.Model):
     recipe_title = models.CharField(max_length=255)
     recipe_directions = models.TextField()
@@ -107,7 +126,7 @@ class Recipe(models.Model):
 
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
-
+    category = models.ForeignKey(Category, related_name="recipe_cat", on_delete = models.CASCADE)
     uploaded_by = models.ForeignKey(User, related_name="recipes_uploaded", on_delete = models.CASCADE)
     added_by = models.ManyToManyField(User, related_name="added_recipes")
 
@@ -121,27 +140,6 @@ class Image(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
 
     images = models.ForeignKey(Recipe, related_name="for_recipe", on_delete = models.CASCADE)
-
-class CategoryManager(models.Manager):
-
-    def category_validator(self, postData):
-
-        errors = {}
-
-        if len(postData['category_name'])<1:
-            errors['category_name'] = "Category name cannot be blank" 
-
-        return errors
-
-class Category(models.Model):
-    category_name = models.CharField(max_length=255)
-
-    created_at = models.DateTimeField(auto_now_add = True)
-    updated_at = models.DateTimeField(auto_now = True)
-
-    categories = models.ForeignKey(Recipe, related_name="recipe_categories", on_delete = models.CASCADE, null=True)
-
-    objects = CategoryManager()
 
 
 class IngredientManager(models.Manager):

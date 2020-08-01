@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <style>
+        #edit_title{
+            width: 60%;
+            height: 4rem;
+            font-size: 30px;
+        }
+        #edit_description{
+            width: 95%;
+            height: auto;
+        }
+        #blue {
+            color: blue;
+        }
+        a {
+            color: rgba(145, 130, 0, 0.671);
+        }
+    </style>
+    <title>Book Info</title>
+</head>
+<body>
+    <div class="card">
+
+        <!-- Logo and name header -->
+        <div class="card-header">
+            <div class="col">
+                <a href="/logout" class="float-right" id="blue">Log Out</a> 
+                <img src ="https://i.ibb.co/pjHVs2J/Data-Bake-removebg.png" alt="DataBake logo" width = "220px">
+            </div>
+            <br>
+            <div>
+                <ul class="nav nav-tabs float-left nav-fill" style="width:50%">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/homepage">The Databake</a>
+                    </li>
+                </ul>
+                <ul class="nav nav-tabs justify-content-end nav-fill" style="width: 50%;">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/profile">Me</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="/my_recipes">My Recipes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id='recipe_photo'>
+        <h3>Create Recipe:</h3>
+        <img src="../static/img/Placeholder.png" alt="image placeholder">
+    </div>
+</body>
+</html>
