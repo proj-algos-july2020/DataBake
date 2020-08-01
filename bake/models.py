@@ -126,7 +126,7 @@ class Recipe(models.Model):
 
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
-    category = models.ForeignKey(Category, related_name="recipe_cat", on_delete = models.CASCADE)
+    category = models.CharField(max_length = 40)
     uploaded_by = models.ForeignKey(User, related_name="recipes_uploaded", on_delete = models.CASCADE)
     added_by = models.ManyToManyField(User, related_name="added_recipes")
 

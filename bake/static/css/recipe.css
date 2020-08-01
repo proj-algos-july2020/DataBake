@@ -1,0 +1,25 @@
+#wrapper{
+    width: 900px;
+    margin: 0px auto;
+    padding-top: 25px;
+    outline: 1px dashed red;
+}
+#recipe_photo{
+    width: 200px;
+    display: inline-block;
+}
+img{
+    margin-top: 10px;
+    width: 175px;
+}
+#recipe_photo a{
+    color: blue;
+    text-decoration: underline;
+    display: block;
+    margin-left: 36px;
+    margin-top: 7px;
+}
+#recipe{
+    display: inline-block;
+    vertical-align: top;
+}
