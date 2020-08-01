@@ -19,3 +19,15 @@ def login(request):
             request.session['id'] = user.id 
             return redirect('/user')
     return redirect('/')
+
+def registration(request):
+    return render(request, 'register.html')
+
+def homepage(request):
+    return render(request, 'homepage.html')
+
+def profile(request):
+    return render(request, 'profile.html')
+
+def my_recipes(request):
+    return render(request, 'my_recipes.html')
