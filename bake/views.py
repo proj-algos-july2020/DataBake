@@ -50,3 +50,5 @@ def profile(request):
 def my_recipes(request):
     return render(request, 'my_recipes.html')
 
+def create(request):
+    return render(request, 'recipe.html')
