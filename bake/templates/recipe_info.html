@@ -14,6 +14,12 @@
             width: 95%;
             height: auto;
         }
+        #blue {
+            color: blue;
+        }
+        a {
+            color: rgba(145, 130, 0, 0.671);
+        }
     </style>
     <title>Book Info</title>
 </head>
@@ -23,26 +29,24 @@
         <!-- Logo and name header -->
         <div class="card-header">
             <div class="col">
-                <a href="/logout" class="float-right">Log Out</a> 
-                <img src ="https://i.ibb.co/c6pzmn5/DataBake.png" alt="DataBake logo" width = "20%">
+                <a href="/logout" class="float-right" id="blue">Log Out</a> 
+                <img src ="https://i.ibb.co/pjHVs2J/Data-Bake-removebg.png" alt="DataBake logo" width = "220px">
             </div>
-            <div class="btn-toolbar" role="toolbar">
-                <div class="btn-group mr-2" role="group" aria-label="First group" >
-                    <form action="/homepage" method="post">
-                        {%csrf_token%}
-                        <input type="submit" value="The DataBake" class="btn btn-dark" id="header1">
-                    </form>
-                </div>
-                <div class="btn-group mr-2 align-right" role="group" aria-label="Second group" id="right">
-                    <form action="/profile" method="post">
-                        {%csrf_token%}
-                        <input type="submit" value="Me" class="btn btn-dark" id="header2">
-                    </form>
-                    <form action="/my_recipes" method="post">
-                        {%csrf_token%}
-                        <input type="submit" value="My Recipes" class="btn btn-dark" id="header3">
-                    </form>
-                </div>
+            <br>
+            <div>
+                <ul class="nav nav-tabs float-left nav-fill" style="width:50%">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/homepage">The Databake</a>
+                    </li>
+                </ul>
+                <ul class="nav nav-tabs justify-content-end nav-fill" style="width: 50%;">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/profile">Me</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="/my_recipes">My Recipes</a>
+                    </li>
+                </ul>
             </div>
         </div>
 

@@ -3,41 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        img{
+            margin-left: -150px;
+        }
+        #white {
+            color: whitesmoke;
+            -webkit-text-stroke-width: 1px; 
+            -webkit-text-stroke-color: black; 
+            font-weight: bold;
+        }
+        form {
+            text-align: center;
+        }
+    </style>
+    <title>DataBake</title>
 </head>
 <body>
-    <h1>Welcome to DataBake</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium aliquid fuga amet, iste repellendus culpa ab corrupti assumenda architecto ipsam laudantium quidem eligendi perferendis delectus minus rerum debitis quis libero!</p>
+    <div class="container" style="background-image: url(https://i.ibb.co/3rfVcmY/Data-Bake-Background.jpg);">
+        
+        <div class="mx-auto" style="width: 200px;">
+            <img src = "https://i.ibb.co/MZjYj1t/Data-Bake-logo-white.png" alt="DataBake-logo" width = "250%">
+            <p class="font-italic border-black" id="white">By Bakers, For Bakers</p>
+        </div>
 
-    <ul class="messages">    
-        {% for message in messages %}    
-        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-        {% endfor %}
-    </ul>
+        <div class="col-9 mx-auto border border-white rounded-lg" style="background-color: whitesmoke; overflow-x: auto;">
 
-    <form action="/register" method="POST">
-        {% csrf_token %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                <li class="text-danger font-italic" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
 
-        <h3>First Name: <input type="text" name="first_name"></h3>
-        <h3>Last Name: <input type="text" name="last_name"></h3>
-        <h3>Email: <input type="text" name="email"></h3>
-        <h3>City: <input type="text" name="city"></h3>
-        <h3>State: <select name="state" id="state">State
-            <option value="ca">CA</option>
-            <option value="wa">WA</option>
-        </select></h3>
-        <h3>Zipcode: <input type="text" name="zipcode"></h3>
-        <h3>Current postion: <input type="text" name="title"></h3>
-        <textarea name="bio" id="textbox" cols="40" rows="10">tell us about you</textarea>
+            <form action="/homepage" method="POST">
+                {% csrf_token %}
 
-        <h3>Password: <input type="text" name="password"></h3>
-        <h3>Confirm Password: <input type="text" name="confirm"></h3>
-        <h3>Create a unique User Name: <input type="text" name="user_name"></h3>
-      
-
-        <input type="submit" value="Create">
-    </form>
+                <table class ="table mx-auto">
 
 
-</body>
-</html>
+                    <tbody>
+                        <tr> 
+                            <th style="text-align:right "> <p>First Name: </th> 
+                            <th style="text-align:left"> <input type="text" name="first_name"></p></th>
+                            <th style="text-align:right"> <p>Last Name: </th>
+                            <th style="text-align:left"> <input type="text" name="last_name"></p></th>
+                        </tr>
+                        <tr> 
+                            <th style="text-align:right"> <p>Email: </th>
+                            <th style="text-align:left"> <input type="text" name="email"></p></th>
+                            <th style="text-align:right"> <p>Username: </th>
+                            <th style="text-align:left"> <input type="text" name="user_name"></p></th>
+                        </tr>
+                        <tr> 
+                            <th style="text-align:right"> <p>Password: </th>
+                            <th style="text-align:left"> <input type="text" name="password"></p></th>
+                            <th style="text-align:right"> <p>Confirm Password: </th>
+                            <th style="text-align:left"> <input type="text" name="confirm"></p></th>
+                        </tr>                                                
+        
+                        <table class="table">
+                            <tbody style="width: 200px;">
+                                <tr> 
+                                    <th style="text-align:right"> <p>Zipcode: </th>
+                                    <th style="text-align:left"> <input type="text" name="zipcode" style="width:100px"></p></th>
+                                    <th style="text-align:right"> <p>State: </th>
+                                    <th style="text-align:left"> <input type="text" name="state" style="width:50px"></p>
+                                    <th style="text-align:right"> <p>City: </th>
+                                    <th style="text-align:left"> <input type="text" name="city" style="width:80px"></p></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </tbody>
+                </table>
+
+                <table class="table mx-auto">
+                    <tbody>
+                        <tr col="1"> 
+                            <th style="text-align:right"> <p>Current Position: </th>
+                            <th> <input type="text" name="title" style="width:500px"></p></th>
+                        </tr>
+                        <tr col="3">
+                            <th style="text-align:right"> <p>Tell us about you:</p> </th>
+                            <th> <textarea type="text" name="bio" id="textbox" style="width:100%"></textarea></th>
+                        </tr>
+                    </tbody>
+  
+                </table>
+
+                <input type="submit" value="Create" class="btn btn-warning mx-auto">
+                
+            </form>
+            <br>
+
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
