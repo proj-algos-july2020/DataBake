@@ -43,12 +43,14 @@
 
         <!-- Profile Info -->
         <div class="card-body">
-            <h1>{{ user.first_name}} {{ user.last_name }}</h1>
+            <h1>{{logged_user.first_name}} {{ logged_user.last_name }}</h1>
             <a href="/edit_profile" class="float-right">Edit Profile</a> 
-            <p>{{ user.user_profile.title }}</p>
+            <p>Title: {{logged_user.title}}</p>
+            <p>Bio : {{logged_user.bio}}</p>
+            <p>location : {{logged_user.city}} {{logged_user.state}}</p>
             <p class="text-muted font-weight-lighter font-italic">{{ user.user_profile.location }}</p>
             <div class="border">
-                <p class="text-smaller">{{ user.user_profile.bio }}</p>
+                <p class="text-smaller">{{ logged_user.bio }}</p>
             </div>
             <form action="/create" method="post">
                 {%csrf_token%}
