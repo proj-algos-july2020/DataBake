@@ -1,0 +1,36 @@
+*{
+    /* outline: 1px dashed red; */
+}
+#edit_title{
+    width: 60%;
+    height: 4rem;
+    font-size: 30px;
+}
+#edit_description{
+    width: 95%;
+    height: auto;
+}
+#blue {
+    color: blue;
+}
+a {
+    color: rgba(145, 130, 0, 0.671);
+}
+td{
+    padding: 0px 10px;
+}
+table{
+    margin-bottom: 20px;
+}
+p{
+    margin-bottom: 3px;
+}
+#bio{
+    margin-top: 25px;
+}
+#wrapper a{
+    display: block;
+}
+/* #footer{
+    display: block;
+} */

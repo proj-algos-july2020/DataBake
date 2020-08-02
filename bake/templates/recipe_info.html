@@ -4,23 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        #edit_title{
-            width: 60%;
-            height: 4rem;
-            font-size: 30px;
-        }
-        #edit_description{
-            width: 95%;
-            height: auto;
-        }
-        #blue {
-            color: blue;
-        }
-        a {
-            color: rgba(145, 130, 0, 0.671);
-        }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/recipe_info.css' %}">
     <title>Book Info</title>
 </head>
 <body>
@@ -53,27 +38,39 @@
         
         <div class="row card-body">
             <!-- Recipe info  -->
-            <div class="col p-4 bg-light m-4 border">
+            <div id='wrapper' class="col p-4 bg-light m-4 border">
                 
                 <h3>{{ recipe.recipe_title }}</h3>
                 <p>Ingredients: </p>
-                {% for r in recipe.recipe_ingredients.all %} 
-                    <p>{{r.ingredient_quantity}}</p>
-                {% endfor %}
-                <p>Created On: {{ recipe.created_at }}</p>
-                <p>Last updated: {{ recipe.updated_at }}</p>
-                <p>Created by: {{ recipe.uploaded_by.first_name }} {{ recipe.uploaded_by.last_name }}</p>
+                <table>
+                    {% for r in recipe.recipe_ingredients.all %}
+                    <tr>
+                        <td>{{r.ingredient_quantity}}</td>
+                        <td>{{r.ingredient_measurement}}</td>
+                        <td>{{r.ingredient_name}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <p>Directions: </p>
+                <p>{{recipe.recipe_directions}}</p>
+                <div id="bio">
+                    <p>Created On: {{ recipe.created_at }}</p>
+                    <p>Last updated: {{ recipe.updated_at }}</p>
+                    <p>Created by: {{ recipe.uploaded_by.first_name }} {{ recipe.uploaded_by.last_name }}</p>
+                </div>
                 <br>
                 <br>                
                 <br>
-                {% if recipe not in user.added_by.all %}
-                    <a href="/recipe/{{ recipe.id }}/add">Add to My Recipes</a>
-                {% else %}
-                    <a href="/recipe/{{ recipe.id }}/remove">Remove from My Recipes</a>
-                {% endif %}
-                <br>
-                <br>
-                <a href="/recipe/{{ recipe.id }}/delete">Delete Recipe</a>
+                <div id="footer">
+                    {% if recipe not in user.added_by.all %}
+                        <a href="/recipe/{{ recipe.id }}/add">Add to My Recipes</a>
+                    {% else %}
+                        <a href="/recipe/{{ recipe.id }}/remove">Remove from My Recipes</a>
+                    {% endif %}
+                    <br>
+                    <br>
+                    <a href="/recipe/{{ recipe.id }}/delete">Delete Recipe</a>
+                </div>
             </div>
         </div>
 
