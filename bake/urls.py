@@ -11,6 +11,8 @@ urlpatterns = [
     path('profile', views.profile),
     path('my_recipes', views.my_recipes),
     path('create', views.create),
+    path('logout', views.logout),
+    path('edit_profile', views.editprofile)
     path('newrecipe', views.newrecipe),
     path('ingredients', views.ingredients),
     path('adding', views.adding),

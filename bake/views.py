@@ -40,7 +40,19 @@ def register(request):
     return redirect('/user')
 
 def user(request):
-    return render(request, 'profile.html')
+
+    if 'id' not in request.session:
+        return redirect('/')
+    context = { 
+        'logged_user' : User.objects.get(id=request.session['id']),
+        }
+    print(context['logged_user'])
+
+
+    return render(request, 'profile.html', context)
+
+def editprofile(request):
+    return render (request,'edit_profile.html')
 
 def homepage(request):
     return render(request, 'homepage.html')
@@ -56,6 +68,10 @@ def my_recipes(request):
 
 def create(request):
     return render(request, 'recipe.html')
+
+def logout(request):
+    request.session.clear()
+    return redirect('/')
 
 def newrecipe(request):
     if request.method == 'POST':
@@ -90,3 +106,4 @@ def recipe(request, num):
         'recipe': Recipe.objects.get(id=num)
     }
     return render(request, 'recipe_info.html', context)
+

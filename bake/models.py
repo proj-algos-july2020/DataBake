@@ -36,7 +36,7 @@ class UserManager(models.Manager):
         if len(postData['city'])<2:
             errors['city'] = "please enter a city "
         if len(postData['state'])<2:
-            errors['last_name'] = "please scroll down and choose a state"
+            errors['last_name'] = "please add a state"
         if len(postData['zipcode'])<5:
             errors['zipcode'] = "please enter a zipcode"
 
