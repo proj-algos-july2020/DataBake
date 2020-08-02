@@ -66,69 +66,10 @@
                                 </div>
                         {% endfor %}
                     </div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-creams-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == cream  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-mousses-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == mousse  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-glazes-tab">
-                        {% for recipe in all_recipes %}
-                            {% if recipe.recipe_categories.category_name == glaze  %}
-                                <div class = "border">
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-sponges-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == sponge  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-syrups-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == syrup  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-confectionary-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == confectionary  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
                 </div>
                 </div>
             </div>
-               
+            <input id="my" type="hidden" value="home">   
         </div>
     </div>
 </body>

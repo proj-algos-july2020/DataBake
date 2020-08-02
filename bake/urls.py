@@ -24,4 +24,12 @@ urlpatterns = [
     path('syrups', views.syrups),
     path('confection', views.confection),
     path('other', views.other),
+    path('mdoughs', views.mdoughs),
+    path('mcreams', views.mcreams),
+    path('mmousses', views.mmousses),
+    path('mglazes', views.mglazes),
+    path('msponges', views.msponges),
+    path('msyrups', views.msyrups),
+    path('mconfection', views.mconfection),
+    path('mother', views.mother),
 ]
