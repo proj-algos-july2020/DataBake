@@ -6,15 +6,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        #edit_title{
-            width: 60%;
-            height: 4rem;
-            font-size: 30px;
-        }
-        #edit_description{
-            width: 95%;
-            height: auto;
-        }
         #blue {
             color: rgb(148, 147, 147);
             text-decoration: underline;
@@ -22,12 +13,17 @@
         a {
             color: rgba(145, 130, 0, 0.671);
         }
+        #create {
+            background-color:rgb(185, 185, 0);
+            color:white;
+            font-weight:550;
+        }
         #space {
             margin-right: 50px;
             margin-left: -10px;  
         }
     </style>
-    <title>Recipe Info</title>
+    <title>Upload Photo</title>
 </head>
 <body>
     <div class="card">
@@ -37,7 +33,7 @@
             <div class="col">
                 <a href="/logout" class="float-right" id="blue">Log Out</a> 
                 <form class="form-inline float-right">
-                    <input class="form-control mr-sm-2" type="search"  id="icon" placeholder="Search the Databake" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search"  placeholder="Search" aria-label="Search" style="width: 60%;">
                     <button class="btn btn-dark my-2 my-sm-0" id="space" type="submit"><i class="fa fa-search"></i></button>
                 </form>
                 <a href="/homepage"><img src ="https://i.ibb.co/pjHVs2J/Data-Bake-removebg.png" alt="DataBake logo" width = "220px"></a>
@@ -46,12 +42,12 @@
             <div>
                 <ul class="nav nav-tabs float-left nav-fill" style="width:50%">
                     <li class="nav-item">
-                      <a class="nav-link active" href="/homepage">The Databake</a>
+                      <a class="nav-link" href="/homepage">The Databake</a>
                     </li>
                 </ul>
                 <ul class="nav nav-tabs justify-content-end nav-fill" style="width: 50%;">
                     <li class="nav-item">
-                      <a class="nav-link" href="/profile/{{ user.id }}">Me</a>
+                      <a class="nav-link active" href="/profile/{{ user.id }}">Me</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/my_recipes">My Recipes</a>
@@ -60,38 +56,31 @@
             </div>
         </div>
 
-        
-        <div class="row card-body">
-            <!-- Recipe info  -->
-            <div class="col p-4 bg-light m-4 border">
-                
-                <form action="/action_page.php">
-                    <input type="file" id="myFile" name="filename">
-                    <input type="submit">
-                </form>
+        <!-- Profile Info -->
+        <div class="card-body">
+            <div class="row">
+                <div class="col-5">
 
-                <h3>{{ recipe.recipe_title }}</h3>
-                <p>Prep time: {{ recipe.prep_time }} </p>
-                <p>Bake time: {{ recipe.cook_time }} </p>
-                <p>Ingredients: {{ recipe.recipe_ingredients.ingredient_name }} </p>
+                    <p>Current Photo:</p>
 
-                <p>Created On: {{ recipe.created_at }}</p>
-                <p>Last updated: {{ recipe.updated_at }}</p>
-                <p>Created by: {{ recipe.uploaded_by.first_name }} {{ recipe.uploaded_by.last_name }}</p>
-                <br>
-                <br>                
-                <br>
-                {% if recipe not in user.added_by.all %}
-                    <a href="/recipe/{{ recipe.id }}/add">Add to My Recipes</a>
-                {% else %}
-                    <a href="/recipe/{{ recipe.id }}/remove">Remove from My Recipes</a>
-                {% endif %}
-                <br>
-                <br>
-                <a href="/recipe/{{ recipe.id }}/delete">Delete Recipe</a>
+                    <img src="{{ user.image }}" alt="user_profile_picture" class="border" style="width:200px">
+
+                    <!-- photo upload -->
+                    <form action="/profpic/{{ user.id }}" method="POST" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="profile_photo">
+                              <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                            </div>
+                            <div class="input-group-append">
+                              <button class="btn btn-dark" type="submit" id="inputGroupFileAddon04">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-
     </div>
 </body>
 </html>

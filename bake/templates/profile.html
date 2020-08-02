@@ -4,24 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
         #blue {
-            color: blue;
+            color: rgb(148, 147, 147);
+            text-decoration: underline;
         }
         a {
             color: rgba(145, 130, 0, 0.671);
         }
+        #create {
+            background-color:rgb(185, 185, 0);
+            color:white;
+            font-weight:550;
+        }
+        #space {
+            margin-right: 50px;
+            margin-left: -10px;  
+        }
     </style>
-    <title>Main Page</title>
+    <title>Profile</title>
 </head>
 <body>
     <div class="card">
 
-        <!-- Logo and name header -->
-        <div class="card-header">
+         <!-- Logo and name header -->
+         <div class="card-header">
             <div class="col">
                 <a href="/logout" class="float-right" id="blue">Log Out</a> 
-                <img src ="https://i.ibb.co/pjHVs2J/Data-Bake-removebg.png" alt="DataBake logo" width = "220px">
+                <form class="form-inline float-right">
+                    <input class="form-control mr-sm-2" type="search"  id="icon" placeholder="Search the Databake" aria-label="Search">
+                    <button class="btn btn-dark my-2 my-sm-0" id="space" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+                <a href="/homepage"><img src ="https://i.ibb.co/pjHVs2J/Data-Bake-removebg.png" alt="DataBake logo" width = "220px"></a>
             </div>
             <br>
             <div>
@@ -32,37 +47,62 @@
                 </ul>
                 <ul class="nav nav-tabs justify-content-end nav-fill" style="width: 50%;">
                     <li class="nav-item">
-                      <a class="nav-link active" href="/profile">Me</a>
+                      <a class="nav-link" href="/profile/{{ user.id }}">Me</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/my_recipes">My Recipes</a>
+                      <a class="nav-link active" href="/my_recipes">My Recipes</a>
                     </li>
                 </ul>
             </div>
         </div>
 
+
         <!-- Profile Info -->
         <div class="card-body">
-            <h1>{{ user.first_name}} {{ user.last_name }}</h1>
-            <a href="/edit_profile" class="float-right">Edit Profile</a> 
-            <p>{{ user.user_profile.title }}</p>
-            <p class="text-muted font-weight-lighter font-italic">{{ user.user_profile.location }}</p>
-            <div class="border">
-                <p class="text-smaller">{{ user.user_profile.bio }}</p>
-            </div>
-            <form action="/create" method="post">
-                {%csrf_token%}
-                <input type="submit" value="Create New Recipe" class="btn btn-secondary" id="header3">
-            </form>
-            <p class="font-weight-bold">Posted Recipes:</p>
-            {% for recipe in all_recipes %}
-                {% if recipe.uploaded_by == user  %}
-                    <div class = "border">
-                        {{ recipe.for_recipe }}
-                        <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
+            <div class="row">
+                <div class="col-5">
+
+                    <img src="{{ user.image }}" alt="user_profile_picture" class="border" style="width:200px">
+
+                    {% if logged_user.id == id %}
+                        <a href="/profpic" class="float-right">Edit Profile Picture</a> 
+                    {% endif %}
+
+
+                    <!-- Following list -->
+
+
+                    <!-- Followers list -->
+
+
+                </div>
+                <div class="col-7">
+                    <h1>{{ user.first_name}} {{ user.last_name }}</h1>
+
+                        <a href="/edit_profile" class="float-right">Edit Profile</a> 
+
+                        <a href="/follow" class="float-right">Follow</a> 
+
+                    <p>{{ user.user_profile.title }}</p>
+                    <p class="text-muted font-weight-lighter font-italic">{{ user.user_profile.location }}</p>
+                    <div class="border">
+                        <p class="text-smaller">{{ user.user_profile.bio }}</p>
                     </div>
-                {% endif %}
-            {% endfor %}
+                    <form action="/create" method="post">
+                        {%csrf_token%}
+                        <input type="submit" value="Create New Recipe" class="btn" id="create">
+                    </form>
+                    <p class="font-weight-bold">Posted Recipes:</p>
+                    {% for recipe in all_recipes %}
+                        {% if recipe.uploaded_by == user  %}
+                            <div class = "border">
+                                {{ recipe.for_recipe }}
+                                <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </body>

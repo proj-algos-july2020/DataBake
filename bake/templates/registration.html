@@ -24,7 +24,7 @@
     <div class="container" style="background-image: url(https://i.ibb.co/3rfVcmY/Data-Bake-Background.jpg);">
         
         <div class="mx-auto" style="width: 200px;">
-            <img src = "https://i.ibb.co/MZjYj1t/Data-Bake-logo-white.png" alt="DataBake-logo" width = "250%">
+            <a href="/"><img src = "https://i.ibb.co/MZjYj1t/Data-Bake-logo-white.png" alt="DataBake-logo" width = "250%"></a>
             <p class="font-italic border-black" id="white">By Bakers, For Bakers</p>
         </div>
 
@@ -36,7 +36,7 @@
                 {% endfor %}
             </ul>
 
-            <form action="/homepage" method="POST">
+            <form action="/register" method="POST">
                 {% csrf_token %}
 
                 <table class ="table mx-auto">
@@ -57,9 +57,9 @@
                         </tr>
                         <tr> 
                             <th style="text-align:right"> <p>Password: </th>
-                            <th style="text-align:left"> <input type="text" name="password"></p></th>
+                            <th style="text-align:left"> <input type="password" name="password"></p></th>
                             <th style="text-align:right"> <p>Confirm Password: </th>
-                            <th style="text-align:left"> <input type="text" name="confirm"></p></th>
+                            <th style="text-align:left"> <input type="password" name="confirm"></p></th>
                         </tr>                                                
         
                         <table class="table">

@@ -2,6 +2,7 @@ from django.db import models
 import re
 from datetime import datetime
 
+
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class UserManager(models.Manager):
@@ -19,7 +20,7 @@ class UserManager(models.Manager):
             errors['email'] = "Email cannot be blank"
         elif not EMAIL_REGEX.match(postData['email']):               
             errors['email'] = "Invalid email address"
-        elif User.objects.filter(email=postData['email_input']).exists():
+        elif User.objects.filter(email=postData['email']).exists():
             errors['emailunique'] = "Email already registered, please login."
 
         if len(postData['password'])<8:
@@ -31,7 +32,7 @@ class UserManager(models.Manager):
         if len(postData['user_name'])<4:
             errors['user_name'] = "Your user name must have 4 or more characters"
         elif User.objects.filter(user_name=postData['user_name']).exists():
-            errors['username_unique'] = "Email already registered, please login."
+            errors['username_unique'] = "Username already registered, please login."
 
         if len(postData['bio'])<10:
             errors['bio'] = "Bio cannot be blank"   
@@ -48,8 +49,7 @@ class UserManager(models.Manager):
             errors['username_unique'] = "User not found"
         if len(postData['password_input']) < 5:
              errors['password'] = 'Please enter an email that contains 5 or more character'
-        if postData['confirmpw_input'] != postData['password_input']:
-            errors['confirm_pw'] = "Your passwords dont match"
+
         return errors
 
 
@@ -65,6 +65,7 @@ class User(models.Model):
     password = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     bio = models.TextField()
+    image = models.ImageField(default='https://i.ibb.co/FbSVkhk/Default.png', upload_to='profile_pics')
     
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
@@ -203,8 +204,6 @@ class Comments(models.Model):
     mess_comment = models.ForeignKey(Messages, related_name="recipe_comment", on_delete = models.CASCADE, null=True )
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
-    
-
 
 
 # class ProfileManager(models.Manager):
