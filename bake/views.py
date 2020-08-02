@@ -40,17 +40,40 @@ def register(request):
     return redirect('/user')
 
 def user(request):
-
     if 'id' not in request.session:
         return redirect('/')
     context = { 
         'logged_user': User.objects.get(id=request.session['id']),
         'recipes': Recipe.objects.filter(uploaded_by=request.session['id'])
         }
+
     return render(request, 'profile.html', context)
 
 def editprofile(request):
-    return render (request,'edit_profile.html')
+    if 'id' not in request.session:
+        return redirect('/')
+    context = { 
+        'logged_user' : User.objects.get(id=request.session['id']),
+        }
+
+    return render (request,'edit_profile.html', context)
+
+def updateprofile(request):
+    errors = User.objects.update_validator(request.POST)
+    if len(errors)>0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/edit_profile')
+    
+    user = User.objects.get(id=request.session['id'])
+    user.title=request.POST['title']
+    user.city=request.POST['city']
+    user.state=request.POST['state']
+    user.zipcode=request.POST['zipcode']
+    user.bio=request.POST['bio']
+    user.save()
+
+    return redirect('/user')
 
 def homepage(request):
     context = {
