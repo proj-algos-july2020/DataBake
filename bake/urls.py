@@ -15,5 +15,6 @@ urlpatterns = [
     path('edit_profile', views.editprofile),
     path('newrecipe', views.newrecipe),
     path('adding', views.adding),
-    path('recipe/<int:num>', views.recipe)
+    path('recipe/<int:num>', views.recipe),
+    path ('update_profile', views.updateprofile),
 ]
