@@ -1,0 +1,16 @@
+
+#blue {
+    color: blue;
+}
+a {
+    color: rgba(145, 130, 0, 0.671);
+}
+p{
+    margin-bottom: 3px;
+}
+form{
+    margin: 25px 0px;
+}
+p:nth-of-type(4){
+    margin-top: 20px;
+}

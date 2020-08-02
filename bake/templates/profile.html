@@ -4,14 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        #blue {
-            color: blue;
-        }
-        a {
-            color: rgba(145, 130, 0, 0.671);
-        }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <title>Main Page</title>
 </head>
 <body>
@@ -44,12 +38,12 @@
         <!-- Profile Info -->
         <div class="card-body">
             <h1>{{logged_user.first_name}} {{ logged_user.last_name }}</h1>
-            <a href="/edit_profile" class="float-right">Edit Profile</a> 
             <p>Title: {{logged_user.title}}</p>
-            <p>Bio : {{logged_user.bio}}</p>
             <p>location : {{logged_user.city}} {{logged_user.state}}</p>
+            <a href="/edit_profile" class="float-right">Edit Profile</a> 
             <p class="text-muted font-weight-lighter font-italic">{{ user.user_profile.location }}</p>
-            <div class="border">
+            <p class="font-weight-bold">Bio:</p>
+            <div id='bio' class="border">
                 <p class="text-smaller">{{ logged_user.bio }}</p>
             </div>
             <form action="/create" method="post">
@@ -57,13 +51,10 @@
                 <input type="submit" value="Create New Recipe" class="btn btn-secondary" id="header3">
             </form>
             <p class="font-weight-bold">Posted Recipes:</p>
-            {% for recipe in all_recipes %}
-                {% if recipe.uploaded_by == user  %}
-                    <div class = "border">
-                        {{ recipe.for_recipe }}
-                        <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                    </div>
-                {% endif %}
+            {% for recipe in recipes %}
+                <div class = "border">
+                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
+                </div>
             {% endfor %}
         </div>
     </div>
