@@ -49,7 +49,10 @@ def profile(request):
     return render(request, 'profile.html')
 
 def my_recipes(request):
-    return render(request, 'my_recipes.html')
+    context = {
+        'recipes': Recipe.objects.all()
+    }
+    return render(request, 'my_recipes.html', context)
 
 def create(request):
     return render(request, 'recipe.html')
@@ -81,3 +84,9 @@ def ingredients(request):
 
 def adding(request):
     return render(request, 'add_ingredient.html')
+
+def recipe(request, num):
+    context = {
+        'recipe': Recipe.objects.get(id=num)
+    }
+    return render(request, 'recipe_info.html', context)

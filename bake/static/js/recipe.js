@@ -38,7 +38,6 @@ $('#rec').on('click', function(e){
     })
     var n = 1
     var dict = {}
-    var arr = []
     for(var x = 0; x < arrData.length; x++){
         if(arrData[x].col1 != ""){
             dict[n] = arrData[x].col1,
