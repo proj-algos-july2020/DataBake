@@ -58,10 +58,10 @@
                 <div class="col-9">
                   <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-doughs-tab">
-                        {% for recipe in all_categories %}
+                        {% for recipe in recipes %}
                             {% if category_name == dough  %}
                                 <div class = "border">
-                                    {{ recipe.for_recipe }}
+                                    {{ recipe.category }}
                                     <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
                                 </div>
                             {% endif %}

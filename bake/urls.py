@@ -16,5 +16,5 @@ urlpatterns = [
     path('newrecipe', views.newrecipe),
     path('ingredients', views.ingredients),
     path('adding', views.adding),
-
+    path('recipe/<int:num>', views.recipe)
 ]

@@ -56,10 +56,10 @@
             <div class="col p-4 bg-light m-4 border">
                 
                 <h3>{{ recipe.recipe_title }}</h3>
-                <p>Prep time: {{ recipe.prep_time }} </p>
-                <p>Bake time: {{ recipe.cook_time }} </p>
-                <p>Ingredients: {{ recipe.recipe_ingredients.ingredient_name }} </p>
-
+                <p>Ingredients: </p>
+                {% for r in recipe.recipe_ingredients.all %} 
+                    <p>{{r.ingredient_quantity}}</p>
+                {% endfor %}
                 <p>Created On: {{ recipe.created_at }}</p>
                 <p>Last updated: {{ recipe.updated_at }}</p>
                 <p>Created by: {{ recipe.uploaded_by.first_name }} {{ recipe.uploaded_by.last_name }}</p>
