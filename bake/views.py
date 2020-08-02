@@ -44,11 +44,9 @@ def user(request):
     if 'id' not in request.session:
         return redirect('/')
     context = { 
-        'logged_user' : User.objects.get(id=request.session['id']),
+        'logged_user': User.objects.get(id=request.session['id']),
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'])
         }
-    print(context['logged_user'])
-
-
     return render(request, 'profile.html', context)
 
 def editprofile(request):
@@ -61,7 +59,7 @@ def homepage(request):
     return render(request, 'homepage.html', context)
 
 def profile(request):
-    return render(request, 'profile.html')
+    return redirect(user)
 
 def my_recipes(request):
     context = {
