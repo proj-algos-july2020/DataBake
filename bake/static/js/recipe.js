@@ -175,3 +175,148 @@ $('#other').click(function(e){
         }
     });
 });
+
+$('#mdoughs').click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: "mdoughs",
+        method: "POST",
+        success: function(data){
+            $('#pageload').html(data);
+            $('#mdoughs').removeClass('nav-link').addClass('nav-link active')
+            $('#mcreams').removeClass('active')
+            $('#mmousses').removeClass('active')
+            $('#mglazes').removeClass('active')
+            $('#msponges').removeClass('active')
+            $('#msyrups').removeClass('active')
+            $('#mconfection').removeClass('active')
+            $('#mother').removeClass('active')
+        }
+    });
+});
+$('#mcreams').click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: "mcreams",
+        method: "POST",
+        success: function(data){
+            $('#pageload').html(data);
+            $('#mcreams').removeClass('nav-link').addClass('nav-link active')
+            $('#mdoughs').removeClass('active')
+            $('#mmousses').removeClass('active')
+            $('#mglazes').removeClass('active')
+            $('#msponges').removeClass('active')
+            $('#msyrups').removeClass('active')
+            $('#mconfection').removeClass('active')
+            $('#mother').removeClass('active')
+        }
+    });
+});
+$('#mmousses').click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: "mmousses",
+        method: "POST",
+        success: function(data){
+            $('#pageload').html(data);
+            $('#mmousses').removeClass('nav-link').addClass('nav-link active')
+            $('#mcreams').removeClass('active')
+            $('#mdoughs').removeClass('active')
+            $('#mglazes').removeClass('active')
+            $('#msponges').removeClass('active')
+            $('#msyrups').removeClass('active')
+            $('#mconfection').removeClass('active')
+            $('#mother').removeClass('active')
+        }
+    });
+});
+$('#mglazes').click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: "mglazes",
+        method: "POST",
+        success: function(data){
+            $('#pageload').html(data);
+            $('#mglazes').removeClass('nav-link').addClass('nav-link active')
+            $('#mcreams').removeClass('active')
+            $('#mmousses').removeClass('active')
+            $('#mdoughs').removeClass('active')
+            $('#msponges').removeClass('active')
+            $('#msyrups').removeClass('active')
+            $('#mconfection').removeClass('active')
+            $('#mother').removeClass('active')
+        }
+    });
+});
+$('#msponges').click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: "msponges",
+        method: "POST",
+        success: function(data){
+            $('#pageload').html(data);
+            $('#msponges').removeClass('nav-link').addClass('nav-link active')
+            $('#mcreams').removeClass('active')
+            $('#mmousses').removeClass('active')
+            $('#mglazes').removeClass('active')
+            $('#mdoughs').removeClass('active')
+            $('#msyrups').removeClass('active')
+            $('#mconfection').removeClass('active')
+            $('#mother').removeClass('active')
+        }
+    });
+});
+$('#msyrups').click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: "msyrups",
+        method: "POST",
+        success: function(data){
+            $('#pageload').html(data);
+            $('#msyrups').removeClass('nav-link').addClass('nav-link active')
+            $('#mcreams').removeClass('active')
+            $('#mmousses').removeClass('active')
+            $('#mglazes').removeClass('active')
+            $('#msponges').removeClass('active')
+            $('#mdoughs').removeClass('active')
+            $('#mconfection').removeClass('active')
+            $('#mother').removeClass('active')
+        }
+    });
+});
+$('#mconfection').click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: "mconfection",
+        method: "POST",
+        success: function(data){
+            $('#pageload').html(data);
+            $('#mconfection').removeClass('nav-link').addClass('nav-link active')
+            $('#mcreams').removeClass('active')
+            $('#mmousses').removeClass('active')
+            $('#mglazes').removeClass('active')
+            $('#msponges').removeClass('active')
+            $('#msyrups').removeClass('active')
+            $('#mdoughs').removeClass('active')
+            $('#mother').removeClass('active')
+        }
+    });
+});
+$('#mother').click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: "mother",
+        method: "POST",
+        success: function(data){
+            $('#pageload').html(data);
+            $('#mother').removeClass('nav-link').addClass('nav-link active')
+            $('#mcreams').removeClass('active')
+            $('#mmousses').removeClass('active')
+            $('#mglazes').removeClass('active')
+            $('#msponges').removeClass('active')
+            $('#msyrups').removeClass('active')
+            $('#mconfection').removeClass('active')
+            $('#mdoughs').removeClass('active')
+        }
+    });
+});
