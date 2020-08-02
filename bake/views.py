@@ -43,7 +43,8 @@ def user(request):
     if 'id' not in request.session:
         return redirect('/')
     context = { 
-        'logged_user' : User.objects.get(id=request.session['id']),
+        'logged_user': User.objects.get(id=request.session['id']),
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'])
         }
 
     return render(request, 'profile.html', context)
@@ -75,14 +76,17 @@ def updateprofile(request):
     return redirect('/user')
 
 def homepage(request):
-    return render(request, 'homepage.html')
+    context = {
+        'recipes': Recipe.objects.all()
+    }
+    return render(request, 'homepage.html', context)
 
 def profile(request):
-    return render(request, 'profile.html')
+    return redirect(user)
 
 def my_recipes(request):
     context = {
-        'recipes': Recipe.objects.all()
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'])
     }
     return render(request, 'my_recipes.html', context)
 
@@ -122,3 +126,98 @@ def recipe(request, num):
     }
     return render(request, 'recipe_info.html', context)
 
+def doughs(request):
+    context = {
+        'recipes': Recipe.objects.filter(category='Doughs'),
+    }
+    return render(request, 'category.html', context)
+
+def creams(request):
+    context = {
+        'recipes': Recipe.objects.filter(category='Creams'),
+    }
+    return render(request, 'category.html', context)
+
+def mousses(request):
+    context = {
+        'recipes': Recipe.objects.filter(category='Mousses'),
+    }
+    return render(request, 'category.html', context)
+
+def glazes(request):
+    context = {
+        'recipes': Recipe.objects.filter(category='Glazes'),
+    }
+    return render(request, 'category.html', context)
+
+def sponges(request):
+    context = {
+        'recipes': Recipe.objects.filter(category='Sponges'),
+    }
+    return render(request, 'category.html', context)
+
+def syrups(request):
+    context = {
+        'recipes': Recipe.objects.filter(category='Syrups'),
+    }
+    return render(request, 'category.html', context)
+
+def confection(request):
+    context = {
+        'recipes': Recipe.objects.filter(category='Confectionary'),
+    }
+    return render(request, 'category.html', context)
+
+def other(request):
+    context = {
+        'recipes': Recipe.objects.filter(category='Other'),
+    }
+    return render(request, 'category.html', context)
+
+def mdoughs(request):
+    context = {
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'], category='Doughs'),
+    }
+    return render(request, 'category.html', context)
+
+def mcreams(request):
+    context = {
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'], category='Creams'),
+    }
+    return render(request, 'category.html', context)
+
+def mmousses(request):
+    context = {
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'], category='Mousses'),
+    }
+    return render(request, 'category.html', context)
+
+def mglazes(request):
+    context = {
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'], category='Glazes'),
+    }
+    return render(request, 'category.html', context)
+
+def msponges(request):
+    context = {
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'], category='Sponges'),
+    }
+    return render(request, 'category.html', context)
+
+def msyrups(request):
+    context = {
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'], category='Syrups'),
+    }
+    return render(request, 'category.html', context)
+
+def mconfection(request):
+    context = {
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'], category='Confectionary'),
+    }
+    return render(request, 'category.html', context)
+
+def mother(request):
+    context = {
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id'], category='Other'),
+    }
+    return render(request, 'category.html', context)

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
         #blue {
             color: blue;
@@ -46,91 +47,31 @@
             <div class="row">
                 <div class="col-3 border">
                   <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link" data-toggle="pill" href="/categories" role="tab" aria-controls="v-pills-doughs" aria-selected="true">Doughs</a>
-                    <a class="nav-link" data-toggle="pill" href="/categories" role="tab" aria-controls="v-pills-creams" aria-selected="false">Creams</a>
-                    <a class="nav-link" data-toggle="pill" href="/categories" role="tab" aria-controls="v-pills-mousses" aria-selected="false">Mousses</a>
-                    <a class="nav-link" data-toggle="pill" href="/categories" role="tab" aria-controls="v-pills-glazes" aria-selected="false">Glazes</a>
-                    <a class="nav-link" data-toggle="pill" href="/categories" role="tab" aria-controls="v-pills-sponges" aria-selected="false">Sponges</a>
-                    <a class="nav-link" data-toggle="pill" href="/categories" role="tab" aria-controls="v-pills-syrups" aria-selected="false">Syrups</a>
-                    <a class="nav-link" data-toggle="pill" href="/categories" role="tab" aria-controls="v-pills-confectionary" aria-selected="false">Confectionary</a>
+                    <a id='mdoughs' class="nav-link" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-doughs" aria-selected="false">Doughs</a>
+                    <a id='mcreams' class="nav-link" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-creams" aria-selected="false">Creams</a>
+                    <a id='mmousses' class="nav-link" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-mousses" aria-selected="false">Mousses</a>
+                    <a id='mglazes' class="nav-link" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-glazes" aria-selected="false">Glazes</a>
+                    <a id='msponges' class="nav-link" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-sponges" aria-selected="false">Sponges</a>
+                    <a id='msyrups' class="nav-link" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-syrups" aria-selected="false">Syrups</a>
+                    <a id='mconfection' class="nav-link" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-confectionary" aria-selected="false">Confectionary</a>
+                    <a id='mother' class="nav-link" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-other" aria-selected="false">Other</a>
                   </div>
                 </div>
-                <div class="col-9">
-                  <div class="tab-content" id="v-pills-tabContent">
+                <div id='my' class="col-9">
+                  <div id='pageload' class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-doughs-tab">
                         {% for recipe in recipes %}
-                            {% if category_name == dough  %}
                                 <div class = "border">
-                                    {{ recipe.category }}
                                     <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
                                 </div>
-                            {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-creams-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == cream  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-mousses-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == mousse  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-glazes-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == glaze  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-sponges-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == sponge  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-syrups-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == syrup  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-confectionary-tab">
-                        {% for recipe in all_categories %}
-                            {% if category_name == confectionary  %}
-                                <div class = "border">
-                                    {{ recipe.for_recipe }}
-                                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
+                  </div>
                 </div>
             </div>
+            <input id="my" type="hidden" value="myrecipe">
         </div>
     </div>
 </body>
+<script src="../static/js/recipe.js"></script>
 </html>

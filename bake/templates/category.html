@@ -1,0 +1,7 @@
+<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-doughs-tab">
+    {% for recipe in recipes %}
+            <div class = "border">
+                <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
+            </div>
+    {% endfor %}
+</div>

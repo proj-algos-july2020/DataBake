@@ -54,8 +54,6 @@ class UserManager(models.Manager):
             errors['username_unique'] = "User not found"
         if len(postData['password_input']) < 5:
              errors['password'] = 'Please enter an email that contains 5 or more character'
-        if postData['confirmpw_input'] != postData['password_input']:
-            errors['confirm_pw'] = "Your passwords dont match"
         return errors
 
     def update_validator(self, postData):
