@@ -75,28 +75,23 @@ def logout(request):
 
 def newrecipe(request):
     if request.method == 'POST':
-        user = User.objects.get(id=2)
-        newRecipe = Recipe.objects.create(recipe_title=request.POST['title'], recipe_directions=request.POST['directions'], category=request.POST['category'],uploaded_by=user)
-        request.session['recipe'] = newRecipe.id
-    return redirect(create)
+        for key, values in request.POST.lists():
+            if key == 'qty':
+                qtyv = values
+            if key == 'meas':
+                measv = values
+            if key == 'ingredient':
+                ingv = values
+    
+        user = User.objects.get(id=request.session['id'])
+        newRecipe = Recipe.objects.create(recipe_title=request.POST['title'], recipe_directions=request.POST['dir'], category=request.POST['category'],uploaded_by=user)
 
-def ingredients(request):
-    recipe = Recipe.objects.get(id=request.session['recipe'])
-    arr = []
-    for key, values in request.POST.lists():
-        arr.append(values),
-    n = 0
-    r = int(round(len(arr)/3))
-    while r > 0:
-        r=r-1
-        iq = arr[n],
-        n = n+1
-        im = arr[n],
-        n = n+1
-        iname = arr[n],
-        n = n+1
-        Ingredient.objects.create(ingredient_name=iname,ingredient_quantity=iq,ingredient_measurement=im, ingredients_for=recipe)
-    return redirect(my_recipes)
+        for i in range(len(qtyv)):
+            if qtyv[i] != "":
+                Ingredient.objects.create(ingredient_name=ingv[i],ingredient_quantity=qtyv[i],ingredient_measurement=measv[i], ingredients_for=newRecipe)
+                
+        return redirect(my_recipes)
+    return redirect(create)
 
 def adding(request):
     return render(request, 'add_ingredient.html')

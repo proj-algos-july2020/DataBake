@@ -62,7 +62,7 @@
         <div id="recipe">
             <form action="\newrecipe" method="post">
                 {% csrf_token %}
-                <input id='title' type="text" placeholder="Title">
+                <input id='title' name="title" type="text" placeholder="Title">
                 <label id='category'>Category: <select id='cat' name="category">
                         <option value="Doughs">Doughs</option>
                         <option value="Creams">Creams</option>
