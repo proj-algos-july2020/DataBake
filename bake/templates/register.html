@@ -30,12 +30,14 @@
 
         <div class="col-9 mx-auto border border-white rounded-lg" style="background-color: whitesmoke;">
 
-            <form action="/homepage" method="POST">
+            <form action="/register" method="POST">
                 {% csrf_token %}
 
                 <table class ="table mx-auto">
 
                     <!-- Cannot figure out how to make the table respond to screen size changes argh -->
+<!-- 
+                    not in use should we delete -->
 
                     <tbody>
                         <tr> 
@@ -80,7 +82,7 @@
                     </tbody>
                 </table>
 
-                <input type="submit" value="Register" class="btn btn-warning mx-auto">
+            <input type="submit" value="Register" class="btn btn-warning mx-auto">
             </form>
             <ul class="messages">    
                 {% for message in messages %}    
