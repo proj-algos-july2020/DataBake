@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 from django.contrib import messages
 import bcrypt
+import math
 def index(request):
     return render(request, 'index.html')
 
@@ -68,3 +69,32 @@ def create(request):
 def logout(request):
     request.session.clear()
     return redirect('/')
+
+def newrecipe(request):
+    if request.method == 'POST':
+        user = User.objects.get(id=2)
+        newRecipe = Recipe.objects.create(recipe_title=request.POST['title'], recipe_directions=request.POST['directions'], category=request.POST['category'],uploaded_by=user)
+        request.session['recipe'] = newRecipe.id
+    return redirect(create)
+
+def ingredients(request):
+    recipe = Recipe.objects.get(id=request.session['recipe'])
+    arr = []
+    for key, values in request.POST.lists():
+        arr.append(values),
+    n = 0
+    r = int(round(len(arr)/3))
+    while r > 0:
+        r=r-1
+        iq = arr[n],
+        n = n+1
+        im = arr[n],
+        n = n+1
+        iname = arr[n],
+        n = n+1
+        Ingredient.objects.create(ingredient_name=iname,ingredient_quantity=iq,ingredient_measurement=im, ingredients_for=recipe)
+    return redirect(my_recipes)
+
+def adding(request):
+    return render(request, 'add_ingredient.html')
+
