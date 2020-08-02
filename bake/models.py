@@ -57,7 +57,7 @@ class UserManager(models.Manager):
 class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    zipcode= models.IntegerField(max_length=5)
+    zipcode= models.IntegerField()
     state=models.CharField(max_length=2)
     city=models.CharField(max_length=75)
     email = models.CharField(max_length=255)
