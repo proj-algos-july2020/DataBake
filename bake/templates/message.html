@@ -1,0 +1,20 @@
+{% for m in message %}
+    <div class="mess">
+        <p>{{m.messages}}</p>
+    </div>
+    <div id="comment">
+        <div class="comm">
+            {% for c in m.recipe_comment.all %}
+            <div class="reply">
+                <p>{{c.comment}}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <form class="comm_form">
+            <textarea name="comment" placeholder="write a comment"></textarea>
+            <input type="hidden" name='message' value="{{m.id}}">
+            <input type="hidden" name="recipe" value="{{recipe.id}}">
+            <button class='post_comm' type="submit">Comment</button>
+        </form>
+    </div>
+{% endfor %}

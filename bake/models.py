@@ -32,11 +32,11 @@ class UserManager(models.Manager):
             errors['user_name'] = "Your user name must have 4 or more characters"
         elif User.objects.filter(user_name=postData['user_name']).exists():
             errors['username_unique'] = "Email already registered, please login."
-# adding validation for location
+
         if len(postData['city'])<2:
             errors['city'] = "please enter a city "
         if len(postData['state'])<2:
-            errors['last_name'] = "please add a state"
+            errors['state'] = "please add a state"
         if len(postData['zipcode'])<5:
             errors['zipcode'] = "please enter a zipcode"
 
@@ -48,7 +48,6 @@ class UserManager(models.Manager):
         return errors
 
 
-# did we want a validation message for invalid password
     def login_validator(self, postData):
         errors = {}
         if not User.objects.filter(user_name=postData['user_name']).exists():
@@ -57,8 +56,22 @@ class UserManager(models.Manager):
              errors['password'] = 'Please enter an email that contains 5 or more character'
         return errors
 
+    def update_validator(self, postData):
+        errors = {}
+        if len(postData['title'])<1:
+            errors['title'] = "Title cannot be blank"
+        if len(postData['city'])<2:
+            errors['city'] = "please enter a city "
+        if len(postData['state'])<2:
+            errors['state'] = "please add a state"
+        if len(postData['zipcode'])<5:
+            errors['zipcode'] = "please enter a zipcode"
+        if len(postData['bio'])<10:
+            errors['bio'] = "Bio cannot be blank" 
+        return errors 
 
-# is it unusual to ask someone for their address on this type of site?
+
+
 class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -75,6 +88,42 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
 
     objects = UserManager()
+
+
+class RecipeManager(models.Manager):
+
+    def recipe_validator(self, postData):
+
+        errors = {}
+
+        if len(postData['recipe_title'])<2:
+            errors['recipe_title'] = "Title must be at least 2 characters" 
+
+        if len(postData["recipe_directions"]) <10:
+            errors["recipe_directions"] = "Directions must be at least 10 characters"
+
+        return errors
+
+class Recipe(models.Model):
+    recipe_title = models.CharField(max_length=255)
+    recipe_directions = models.TextField()
+    category = models.CharField(max_length=40)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    uploaded_by = models.ForeignKey(User, related_name="recipes_uploaded", on_delete = models.CASCADE)
+    added_by = models.ManyToManyField(User, related_name="added_recipes")
+
+    objects = RecipeManager()
+
+
+class Image(models.Model):
+    recipe_image = models.ImageField(upload_to='images/')
+
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    images = models.ForeignKey(Recipe, related_name="for_recipe", on_delete = models.CASCADE)
 
 class CategoryManager(models.Manager):
 
@@ -93,42 +142,9 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
+    categories = models.ForeignKey(Recipe, related_name="recipe_categories", on_delete = models.CASCADE, null=True)
+
     objects = CategoryManager()
-
-class RecipeManager(models.Manager):
-
-    def recipe_validator(self, postData):
-
-        errors = {}
-
-        if len(postData['recipe_title'])<2:
-            errors['recipe_title'] = "Title must be at least 2 characters" 
-
-        if len(postData["recipe_directions"]) <1:
-            errors["recipe_directions"] = "Directions must be at least 10 characters"
-
-        return errors
-
-
-class Recipe(models.Model):
-    recipe_title = models.CharField(max_length=255)
-    recipe_directions = models.TextField()
-    created_at = models.DateTimeField(auto_now_add = True)
-    updated_at = models.DateTimeField(auto_now = True)
-    category = models.CharField(max_length = 40)
-    uploaded_by = models.ForeignKey(User, related_name="recipes_uploaded", on_delete = models.CASCADE)
-    added_by = models.ManyToManyField(User, related_name="added_recipes")
-
-    objects = RecipeManager()
-
-
-class Image(models.Model):
-    recipe_image = models.ImageField(upload_to='images/')
-
-    created_at = models.DateTimeField(auto_now_add = True)
-    updated_at = models.DateTimeField(auto_now = True)
-
-    images = models.ForeignKey(Recipe, related_name="for_recipe", on_delete = models.CASCADE)
 
 
 class IngredientManager(models.Manager):

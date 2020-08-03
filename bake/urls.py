@@ -32,4 +32,6 @@ urlpatterns = [
     path('msyrups', views.msyrups),
     path('mconfection', views.mconfection),
     path('mother', views.mother),
+    path('message/<int:num>', views.message),
+    path('comment/<int:num>', views.comment),
 ]
