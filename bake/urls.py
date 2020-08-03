@@ -16,6 +16,7 @@ urlpatterns = [
     path('newrecipe', views.newrecipe),
     path('adding', views.adding),
     path('recipe/<int:num>', views.recipe),
+    path ('update_profile', views.updateprofile),
     path('doughs', views.doughs),
     path('creams', views.creams),
     path('mousses', views.mousses),

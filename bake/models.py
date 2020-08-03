@@ -102,12 +102,15 @@ class RecipeManager(models.Manager):
         if len(postData["recipe_directions"]) <10:
             errors["recipe_directions"] = "Directions must be at least 10 characters"
 
-        return errors
+        if len(postData['prep_time']) < 1:
+            errors['prep_time'] = "Prep time cannot be left blank"
+
 
 class Recipe(models.Model):
     recipe_title = models.CharField(max_length=255)
     recipe_directions = models.TextField()
     category = models.CharField(max_length=40)
+
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
@@ -167,8 +170,8 @@ class IngredientManager(models.Manager):
 
 class Ingredient(models.Model):
     ingredient_name = models.CharField(max_length=255)
-    ingredient_quantity = models.CharField(max_length=5)
-    ingredient_measurement = models.CharField(max_length=15)
+    ingredient_quantity = models.FloatField(null=True)
+    ingredient_measurement = models.CharField(max_length=15, null=True)
 
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
