@@ -47,10 +47,10 @@
                 </ul>
                 <ul class="nav nav-tabs justify-content-end nav-fill" style="width: 50%;">
                     <li class="nav-item">
-                      <a class="nav-link" href="/profile/{{ user.id }}">Me</a>
+                      <a class="nav-link active" href="/profile/{{ user.id }}">Me</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active" href="/my_recipes">My Recipes</a>
+                      <a class="nav-link" href="/my_recipes">My Recipes</a>
                     </li>
                 </ul>
             </div>
@@ -63,9 +63,9 @@
                 <div class="col-5">
 
                     <img src="{{ user.image.url }}" alt="user_profile_picture" class="border" style="width:200px">
-
+                    <br>
                     {% if logged_user.id == id %}
-                        <a href="/profpic" class="float-right">Edit Profile Picture</a> 
+                        <a href="/profpic">Edit Profile Picture</a> 
                     {% endif %}
 
 
