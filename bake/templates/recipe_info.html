@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/recipe_info.css' %}">
     <title>Book Info</title>
@@ -53,6 +54,38 @@
                 </table>
                 <p>Directions: </p>
                 <p>{{recipe.recipe_directions}}</p>
+                <div id="message">
+                    <h4>Leave a message</h4>
+                    <form id="mess_form" action="\message/{{recipe.id}}" method="POST">
+                        {% csrf_token %}
+                        <textarea name="message"></textarea>
+                        <button id='post_mess' type='submit'>Post</button>
+                        <input type="hidden" name="recipe" value="{{recipe.id}}">
+                    </form>
+                </div>
+                <div id="load">
+                    {% for m in message %}
+                    <div class="mess">
+                        <p>{{m.messages}}</p>
+                    </div>
+                    <div id="comment">
+                        <div class="comm">
+                            {% for c in m.recipe_comment.all %}
+                            <div class="reply">
+                                <p>{{c.comment}}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <form class="comm_form" action="\comment/{{recipe.id}}" method="POST">
+                            {% csrf_token %}
+                            <textarea name="comment" placeholder="write a comment"></textarea>
+                            <input type="hidden" name='message' value="{{m.id}}">
+                            <input type="hidden" name="recipe" value="{{recipe.id}}">
+                            <button class='post_comm' type="submit">Comment</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
                 <div id="bio">
                     <p>Created On: {{ recipe.created_at }}</p>
                     <p>Last updated: {{ recipe.updated_at }}</p>
@@ -73,7 +106,7 @@
                 </div>
             </div>
         </div>
-
     </div>
 </body>
+<script src="../static/js/recipe.js"></script>
 </html>

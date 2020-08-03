@@ -121,8 +121,10 @@ def adding(request):
     return render(request, 'add_ingredient.html')
 
 def recipe(request, num):
+    recipe = Recipe.objects.get(id=num)
     context = {
-        'recipe': Recipe.objects.get(id=num)
+        'recipe': recipe,
+        'message': Messages.objects.filter(recipe_message=recipe)
     }
     return render(request, 'recipe_info.html', context)
 
@@ -221,3 +223,19 @@ def mother(request):
         'recipes': Recipe.objects.filter(uploaded_by=request.session['id'], category='Other'),
     }
     return render(request, 'category.html', context)
+
+def message(request, num):
+    if request.method == "POST":
+        if request.POST['message'] != "":
+            recipes = Recipe.objects.get(id=request.POST['recipe'])
+            Messages.objects.create(messages=request.POST['message'], recipe_message=recipes)
+            return redirect(recipe, num)
+    return redirect(homepage)
+
+def comment(request, num):
+    if request.method == "POST":
+        if request.POST['comment'] != "":
+            message = Messages.objects.get(id=request.POST['message'])
+            Comments.objects.create(comment=request.POST['comment'], mess_comment=message)
+            return redirect(recipe, num)
+    return redirect(homepage)

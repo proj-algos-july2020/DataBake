@@ -105,16 +105,11 @@ class RecipeManager(models.Manager):
         if len(postData['prep_time']) < 1:
             errors['prep_time'] = "Prep time cannot be left blank"
 
-        if len(postData['cook_time'])<1:
-            errors['cook_time'] = "Cook time cannot be left blank"
-
-        return errors
 
 class Recipe(models.Model):
     recipe_title = models.CharField(max_length=255)
     recipe_directions = models.TextField()
-    prep_time = models.CharField(max_length = 20)
-    cook_time = models.CharField(max_length = 20)
+    category = models.CharField(max_length=40)
 
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)

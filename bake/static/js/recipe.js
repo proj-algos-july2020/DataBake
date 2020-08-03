@@ -320,3 +320,57 @@ $('#mother').click(function(e){
         }
     });
 });
+// function buttonHandler(){
+//     $('#post_mess').click(function(e){
+//         e.preventDefault();
+//         $.ajax({
+//             url: "message",
+//             method: "POST",
+//             data: $('#mess_form').serialize(),
+//             success: function(data){
+//                 $('#load').html(data),
+//                 $('textarea').val('');
+//                 buttonHandler();
+//             }
+//         })
+//     })
+//     $('.post_comm').click(function(e){
+//         e.preventDefault();
+//         $.ajax({
+//             url: "comment",
+//             method: "POST",
+//             data: $('.comm_form').serialize(),
+//             success: function(data){
+//                 $('#load').html(data),
+//                 $('textarea').val('');
+//                 buttonHandler();
+//             }
+//         })
+//     })
+// }
+// $('#post_mess').click(function(e){
+//     e.preventDefault();
+//     $.ajax({
+//         url: "message",
+//         method: "POST",
+//         data: $('#mess_form').serialize(),
+//         success: function(data){
+//             $('#load').html(data),
+//             $('textarea').val('');
+//             buttonHandler();
+//         }
+//     })
+// })
+// $('.post_comm').click(function(e){
+//     e.preventDefault();
+//     $.ajax({
+//         url: "comment",
+//         method: "POST",
+//         data: $('.comm_form').serialize(),
+//         success: function(data){
+//             $('#load').html(data),
+//             $('textarea').val('');
+//             buttonHandler();
+//         }
+//     })
+// })
