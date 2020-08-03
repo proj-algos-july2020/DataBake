@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-5">
 
-                    <img src="{{ user.image }}" alt="user_profile_picture" class="border" style="width:200px">
+                    <img src="{{ user.image.url }}" alt="user_profile_picture" class="border" style="width:200px">
 
                     {% if logged_user.id == id %}
                         <a href="/profpic" class="float-right">Edit Profile Picture</a> 
