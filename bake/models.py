@@ -83,7 +83,7 @@ class User(models.Model):
     password = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     bio = models.TextField()
-    
+    image = models.ImageField(default='https://i.ibb.co/FbSVkhk/Default.png', upload_to='profile_pics')
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 

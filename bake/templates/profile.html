@@ -37,25 +37,34 @@
 
         <!-- Profile Info -->
         <div class="card-body">
-            <h1>{{logged_user.first_name}} {{ logged_user.last_name }}</h1>
-            <p>Title: {{logged_user.title}}</p>
-            <p>location : {{logged_user.city}} {{logged_user.state}}</p>
-            <a href="/edit_profile" class="float-right">Edit Profile</a> 
-            <p class="text-muted font-weight-lighter font-italic">{{ user.user_profile.location }}</p>
-            <p class="font-weight-bold">Bio:</p>
-            <div id='bio' class="border">
-                <p class="text-smaller">{{ logged_user.bio }}</p>
-            </div>
-            <form action="/create" method="post">
-                {%csrf_token%}
-                <input type="submit" value="Create New Recipe" class="btn btn-secondary" id="header3">
-            </form>
-            <p class="font-weight-bold">Posted Recipes:</p>
-            {% for recipe in recipes %}
-                <div class = "border">
-                    <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
+            <div class="row">
+                <div id='user_img' class="col-3">
+                    <img src="{{ logged_user.image.url }}" alt="user_profile_picture" class="border" style="width:200px">
+                    <br>
+                    <a href="/profpic">Edit Profile Picture</a> 
                 </div>
-            {% endfor %}
+                <div class="col-7">
+                    <h1>{{logged_user.first_name}} {{ logged_user.last_name }}</h1>
+                    <p>Title: {{logged_user.title}}</p>
+                    <p>location : {{logged_user.city}} {{logged_user.state}}</p>
+                    <a href="/edit_profile" class="float-right">Edit Profile</a> 
+                    <p class="text-muted font-weight-lighter font-italic">{{ user.user_profile.location }}</p>
+                    <p class="font-weight-bold">Bio:</p>
+                    <div id='bio' class="border">
+                        <p class="text-smaller">{{ logged_user.bio }}</p>
+                    </div>
+                    <form action="/create" method="post">
+                        {%csrf_token%}
+                        <input type="submit" value="Create New Recipe" class="btn btn-secondary" id="header3">
+                    </form>
+                    <p class="font-weight-bold">Posted Recipes:</p>
+                    {% for recipe in recipes %}
+                        <div class = "border">
+                            <a href="/recipe/{{ recipe.id }}">{{ recipe.recipe_title }}</a></td>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </body>
