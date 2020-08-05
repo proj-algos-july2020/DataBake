@@ -8,7 +8,7 @@ urlpatterns = [
     path('register', views.register),
     path('user', views.user),
     path('homepage', views.homepage),
-    path('profile', views.profile),
+    path('profile/<int:id>', views.profile),
     path('my_recipes', views.my_recipes),
     path('create', views.create),
     path('logout', views.logout),
@@ -35,4 +35,6 @@ urlpatterns = [
     path('mother', views.mother),
     path('message/<int:num>', views.message),
     path('comment/<int:num>', views.comment),
+    path('profpic', views.profpic),
+    path('profpic/<int:id>', views.profile_upload)
 ]

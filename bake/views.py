@@ -81,8 +81,12 @@ def homepage(request):
     }
     return render(request, 'homepage.html', context)
 
-def profile(request):
-    return redirect(user)
+def profile(request, id):
+    context = {
+        'logged_user': User.objects.get(id=request.session['id']),
+        'recipes': Recipe.objects.filter(uploaded_by=request.session['id']),
+    }
+    return render(request, 'profile.html', context)
 
 def my_recipes(request):
     context = {
@@ -239,3 +243,21 @@ def comment(request, num):
             Comments.objects.create(comment=request.POST['comment'], mess_comment=message)
             return redirect(recipe, num)
     return redirect(homepage)
+
+def profpic(request):
+    # To edit profile picture
+    context = {
+        "logged_user": User.objects.get(id=request.session['id']),
+    }
+    return render(request, 'photo_upload.html', context)
+
+def profile_upload(request, id):
+    # To upload new photo as profile photo - add to imagefield in User model
+    updated = User.objects.get(id=id)
+    if request.method == "POST":
+        updated.image = request.FILES['profile_photo']
+        updated.save()
+    context = {
+        'logged_user': User.objects.get(id=id)
+    }
+    return redirect(f'/profile/{id}', context)
